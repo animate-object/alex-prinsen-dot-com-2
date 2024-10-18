@@ -82,7 +82,7 @@ const postListItem = (title, slug, date) => {
         <li class='flex-row flex-start flex-wrap'>
         <h2 class='post-title'>
         <span>${displayDate}</span>
-        <a href="/post#${slug}" class="flex-shrink-0">${title}</a>
+        <a href="/post.html#${slug}" class="flex-shrink-0">${title}</a>
         </h2>
         </li>
     `;

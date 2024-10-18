@@ -1,7 +1,7 @@
 // API stuff ============================
 
-const BASE_URL = "http://localhost:1337/api";
-
+// const BASE_URL = "http://localhost:1337/api";
+const BASE_URL = "https://strapi-production-c581.up.railway.app/api";
 export const fetchData = (path, url = BASE_URL) => {
   return fetch(`${url}${path}`)
     .then((response) => response.json())

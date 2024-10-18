@@ -209,3 +209,10 @@ a:visited:hover {
   align-items: end;
   justify-content: start;
 }
+
+.blog-quarter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
