@@ -1,0 +1,41 @@
+.rt-blog-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.rt-blog-post > code {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--light-gray);
+  color: black;
+  display: block;
+}
+
+.rt-blog-post > blockquote {
+  border-left: 3px solid var(--light-gray);
+  padding-left: 0.75rem;
+}
+
+.rt-blog-post > ol > li {
+  list-style-type: decimal !important;
+}
+
+/* allow wide images to stay wide
+ * but constrain tall images based on 
+ * screen height */
+
+.rt-blog-post > img {
+  max-height: 60vh;
+  object-fit: contain;
+  align-self: center;
+  margin: 1rem;
+  border: 1px solid var(--light-gray);
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 700px) {
+  .rt-blog-post > img {
+    max-width: calc(100vw - 2rem);
+  }
+}

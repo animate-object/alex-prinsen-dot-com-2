@@ -5,159 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alex Prinsen Dot Com</title>
     <link rel="stylesheet" href="styles.css" />
-
-    <script>
-      //   const BASE_URL = "https://strapi-production-c581.up.railway.app/api";
-      const BASE_URL = "http://localhost:1337/api";
-    </script>
-    <script>
-      const fetchData = (path, baseUrl = BASE_URL) => {
-        return fetch(`${baseUrl}${path}`)
-          .then((response) => response.json())
-          .then((data) => data.data);
-      };
-    </script>
-    <script>
-      const DESCRIPTORS = [
-        "web guy",
-        "outdoors enthusiast",
-        "weight lifter",
-        "friend of animals",
-        "book reader",
-        "coffee drinker",
-        "colorado hiker",
-        "minnesota native",
-        "sports fan",
-        "husband, son, and brother",
-        "retired amateur musician",
-        "marathon finisher",
-        "admirer of dogs",
-        "scrabble champ",
-      ];
-
-      const getRandomDescriptorIndex = (excluding) => {
-        let randomIndex = Math.floor(Math.random() * DESCRIPTORS.length);
-        while (excluding.includes(randomIndex)) {
-          randomIndex = Math.floor(Math.random() * DESCRIPTORS.length);
-        }
-        return randomIndex;
-      };
-
-      const updateDescriptor = (idx, value) => {
-        document.getElementById(`descriptor-${idx}`).innerText = value;
-      };
-
-      setTimeout(() => {
-        // set initial values
-        let indices = [1, 2, 3].reduce((acc, _) => {
-          const idx = getRandomDescriptorIndex(acc);
-          return [...acc, idx];
-        }, []);
-
-        const initialDescriptors = indices.map((idx) => DESCRIPTORS[idx]);
-        initialDescriptors.forEach((descriptor, idx) => {
-          updateDescriptor(idx + 1, descriptor);
-        });
-
-        let descriptorIndices = [...indices];
-
-        setInterval(() => {
-          // every 2 seconds, update one of the descriptors
-          // randomly select a descriptor to update, excluding descriptorIndices
-          const itemToUpdateIndex = Math.ceil(Math.random() * 3);
-          const newDescriptorIndex =
-            getRandomDescriptorIndex(descriptorIndices);
-          descriptorIndices[itemToUpdateIndex - 1] = newDescriptorIndex;
-          updateDescriptor(itemToUpdateIndex, DESCRIPTORS[newDescriptorIndex]);
-        }, 2000);
-      }, 10);
-    </script>
-    <script>
-      fetchData(
-        "/home-page-gallery-images?populate[0]=image&pagination[pageSize]=25"
-      ).then((imageData) => {
-        imageData.sort(() => 0.5 - Math.random());
-
-        imageElements = [];
-
-        imageData.forEach((datablob, idx) => {
-          const image = datablob.attributes.image.data.attributes;
-
-          try {
-            const { formats, name } = image;
-
-            const url =
-              formats?.large?.url ||
-              formats?.medium?.url ||
-              formats?.small?.url ||
-              formats?.thumbnail?.url;
-
-            const img = document.createElement("img");
-            img.src = url;
-            img.alt = name;
-            img.className = "home-image";
-            img.onclick = () => {
-              window.open(url, "_blank");
-            };
-            img.style.cursor = "pointer";
-
-            imageElements.push(img);
-          } catch (e) {
-            console.warn("last image before it broke 👆");
-            console.error(e);
-          }
-        });
-
-        const imageGallery = document.getElementById("image-gallery");
-
-        imageElements.forEach((img) => {
-          imageGallery.appendChild(img);
-        });
-
-        let direction = 1;
-
-        setInterval(() => {
-          imageGallery.scrollLeft += 1 * direction;
-
-          if (
-            imageGallery.scrollLeft >=
-            imageGallery.scrollWidth - imageGallery.clientWidth
-          ) {
-            direction = -1;
-          } else if (imageGallery.scrollLeft <= 0) {
-            direction = 1;
-          }
-        }, 100);
-      });
-    </script>
-    <script>
-      const newListItem = (title, description, url) => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-            <span class='flex-row flex-start flex-wrap'>
-              <a href="${url}">${title}</a>&nbsp;
-              <p>${description}</p>
-            </span>
-          `;
-        return listItem;
-      };
-      fetchData(
-        "/project-links?pagination[pageSize]=10&sort=createdAt:desc"
-      ).then((data) => {
-        const projectLinks = document.getElementById("project-links");
-        data
-          .map((d) => d.attributes)
-          .forEach(({ title, description, url }) => {
-            projectLinks.appendChild(newListItem(title, description, url));
-          });
-      });
-    </script>
+    <script type="module" src="main.js"></script>
   </head>
   <body>
     <div class="full-window">
       <div class="four-quarter-grid">
         <div class="quarter-box box-lg">
-          <h3>hi, my name is alex prinsen</h3>
+          <h3>Alex Prinsen:</h3>
 
           <ul id="random-self-descriptors">
             <li id="descriptor-1"></li>
@@ -170,41 +24,41 @@
           ></div>
         </div>
         <div class="quarter-box box-re">
-          <h3>professional info</h3>
+          <h3>Professional Info</h3>
           <p>I write software and help software teams excel.</p>
           <p>
-            my preferred niche is at the intersection of
+            My preferred niche is at the intersection of
             <b>engineering and product</b>, where I draw on my experience and
             communication skills to align business objectives with the right
             technical solutions.
           </p>
           <p>
-            my general approach is
-            <b>pragmatic, conservative, and iterative</b>. for a bit more on my
+            In general, my approach is
+            <b>pragmatic, conservative, and iterative</b>. For a bit more on my
             background and philosophy, check out this
             <a href="https://alexprinsen.com/philosophy">page</a>.
           </p>
           <p>
             I am currently a <b>Staff Software Engineer</b> at
             <b>Omada Health</b>, where I help build the internal platform that
-            serves our care team. It's a privilege to work with the clinicians
-            and coaches who help our participants live healthier lives with
-            chronic disease.
+            serves our care team. It's a privilege to support the clinicians and
+            coaches who help our participants manage chronic conditions and live
+            healthier lives.
           </p>
         </div>
         <div class="quarter-box box-gr">
-          <h3>projects</h3>
+          <h3>Projects</h3>
           <ul id="project-links"></ul>
         </div>
         <div class="quarter-box box-bl">
-          <h3>blog</h3>
+          <h3><a href="/blog">Blog</a></h3>
         </div>
       </div>
     </div>
     <footer class="footer">
-      this footer contains important information: © 2024 alex prinsen all rights
-      reserved. opinions expressed here are my own. it takes strength to be
-      gentle and kind.
+      This footer contains important information: © 2024 Alex Prinsen all rights
+      reserved. Opinions expressed here are my own. "it takes strength to be
+      gentle and kind."
     </footer>
   </body>
 </html>
