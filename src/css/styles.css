@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Sanchez&display=swap");
+
 body {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Azaret Mono", "Courier New", Courier, monospace;
   background-color: #111111;
   margin: 0;
   padding: 0;
@@ -26,9 +28,10 @@ h6 {
 
 :root {
   --blue: #7d96fc;
-  --vioet: #fa86db;
+  --violet: #fa9ce1;
   --yellow: #fdec8c;
   --red: #ff7a7a;
+  --orange: #ff9f7a;
   --green: #8cff8c;
   --indigo: #9b83fc;
   --light-gray: #f0f0f0;
