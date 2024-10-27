@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "parcel",
-    "build": "parcel build --no-source-maps",
+    "build": "parcel build --no-source-maps --no-cache",
     "dev": "http-server src",
     "deploy": "CLEAR_PATHS='blog,post,index' scripts/upload_to_s3.sh dist/"
   },
