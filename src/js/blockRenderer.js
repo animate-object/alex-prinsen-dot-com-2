@@ -53,14 +53,7 @@ export const unhandledBlockRenderer = (block) => {
 
 const simpleRenderer = (tag) => (block) => {
   const el = document.createElement(tag);
-  if (tag.startsWith("h")) {
-    // debugging
-    console.log(el);
-  }
   el.innerText = block.text || "";
-  if (tag.startsWith("h")) {
-    console.log(el);
-  }
   return el;
 };
 

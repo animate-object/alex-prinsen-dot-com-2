@@ -91,7 +91,6 @@ const postListItem = (title, slug, date) => {
 
 const renderPostList = (posts, postList = getPostListEl()) => {
   postList.innerHTML = "";
-  console.log(posts);
   posts.forEach((post) => {
     const { title, slug, createdAt } = post.attributes;
     postList.appendChild(postListItem(title, slug, createdAt));

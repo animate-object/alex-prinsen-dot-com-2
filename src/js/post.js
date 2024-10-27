@@ -31,7 +31,6 @@ const scrollToHash = () => {
     console.warn(`No element found with id: ${hash}`);
     return;
   }
-  console.debug("Scrolling to hash:", hash);
   anchorEl.scrollIntoView();
 };
 

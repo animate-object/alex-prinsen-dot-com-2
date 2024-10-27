@@ -1,7 +1,5 @@
 import { fetchHomeGalleryImages } from "./api.js";
 
-fetchHomeGalleryImages().then(console.log);
-
 const createHomeImageEl = (url, name) => {
   const img = document.createElement("img");
   img.src = url;
